@@ -1,0 +1,22 @@
+{
+  "name": "prueba_slingr",
+  "version": "1.0.0",
+  "description": "Ejercicio Entrevista Slingr",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frandsr/prueba_slinger.git"
+  },
+  "author": "Francisco de Sautu Riestra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/frandsr/prueba_slinger/issues"
+  },
+  "homepage": "https://github.com/frandsr/prueba_slinger#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
