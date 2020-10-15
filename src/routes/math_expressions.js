@@ -1,5 +1,6 @@
 const { Router } = require('express')
-const mathjs = require('mathjs')
+const { resolverPeticion } = require('../controllers/resolverMathExpression')
+
 const router = Router();
 
 
@@ -7,40 +8,10 @@ const router = Router();
 router.get('/', async (req, res) => {
     res.json({ aplicacion: "Ejercicio para entrevista Slingr" })
 })
-
-router.get('/:expression', async (req, res) => {
-    const expression = req.params.expression;
-    try {
-        const result = mathjs.evaluate(expression)
-        const resultadoJson = result
-        res.json({ resultado: resultadoJson })
-    } catch (error) {
-        res.json({ resultado: "Expresion Ingresada Incorrecta" })
-    }
-})
-router.get('/:expression/:precision', async (req, res) => {
-    const expression = req.params.expression;
-    const precision = req.params.precision;
-    try {
-        const result = mathjs.evaluate(expression)
-        const resultadoJson = precision ? result.toFixed(precision) : result
-        res.json({ resultado: resultadoJson })
-    } catch (error) {
-        res.json({ resultado: "Expresion Ingresada Incorrecta" })
-    }
-})
+router.get('/:expression', resolverPeticion)
+router.get('/:expression/:precision', resolverPeticion)
 
 //RUTAS POST
-router.post('/', async (req, res) => {
-    const expression = req.body.expression;
-    const precision = req.body.precision;
-    try {
-        const result = mathjs.evaluate(expression)
-        const resultadoJson = precision ? result.toFixed(precision) : result
-        res.json({ resultado: resultadoJson })
-    } catch (error) {
-        res.json({ resultado: "Expresion Ingresada Incorrecta" })
-    }
-})
+router.post('/', resolverPeticion)
 
 module.exports = router
