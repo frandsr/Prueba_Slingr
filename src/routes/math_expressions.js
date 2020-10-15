@@ -4,6 +4,10 @@ const router = Router();
 
 
 //RUTAS GET
+router.get('/', async (req, res) => {
+    res.json({ aplicacion: "Ejercicio para entrevista Slingr" })
+})
+
 router.get('/:expression', async (req, res) => {
     const expression = req.params.expression;
     try {
