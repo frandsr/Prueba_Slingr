@@ -3,15 +3,17 @@ const mathjs = require('mathjs')
 let resolvedorDeExpresiones = {}
 
 resolvedorDeExpresiones.resolverPeticion = async (req, res) => {
-    const expression = req.params.expression || req.body.expression;
-    const precision = req.params.precision || req.body.precision;
+    const expression = req.query.expression || req.body.expression;
+    const precision = req.query.precision || req.body.precision;
+    console.log(expression);
+    console.log(precision);
     try {
 
         const result = mathjs.evaluate(expression)
         const resultadoJson = precision ? result.toFixed(precision) : result
-        res.json({ resultado: resultadoJson })
+        res.status(200).json({ resultado: resultadoJson })
     } catch (error) {
-        res.json({ resultado: "Expresion Ingresada Incorrecta" })
+        res.status(400).json({ resultado: "Expresion Ingresada Incorrecta" })
     }
 }
 

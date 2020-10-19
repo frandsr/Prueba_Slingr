@@ -4,7 +4,7 @@
   "description": "Ejercicio Entrevista Slingr",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --recursive --exit",
     "dev": "nodemon src/index.js",
     "start": "node src/index.js"
   },
@@ -19,8 +19,11 @@
   },
   "homepage": "https://github.com/frandsr/prueba_slinger#readme",
   "dependencies": {
+    "chai": "^4.2.0",
     "express": "^4.17.1",
-    "mathjs": "^7.5.1"
+    "mathjs": "^7.5.1",
+    "mocha": "^8.2.0",
+    "supertest": "^5.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.5"
