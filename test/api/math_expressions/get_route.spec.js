@@ -2,10 +2,10 @@ const expect = require("chai").expect;
 const request = require("supertest");
 const app = require("../../../src/index")
 
-describe("POST / Math Expressions", () => {
-    it("OK, el post para resolver expresiones simples sin especificar precision funciona", (done) => {
-        request(app).post("/api/")
-            .send({
+describe("GET / Math Expressions", () => {
+    it("Al mandar una expression matematica simple en un json (sin especificar precision), devuelve el resultado", (done) => {
+        request(app).get("/api/")
+            .query({
                 "expression": "2*2+4"
             })
             .then((res) => {
@@ -14,10 +14,14 @@ describe("POST / Math Expressions", () => {
                 expect(parseInt(body.resultado)).to.equal(8);
                 done();
             })
+            .catch((err) => {
+                console.log(err);
+                done(err)
+            })
     })
-    it("OK, el post para resolver expresiones compleja sin especificar precision funciona", (done) => {
-        request(app).post("/api/")
-            .send({
+    it("Al mandar una expression matematica compleja en un json (sin especificar precision), devuelve el resultado", (done) => {
+        request(app).get("/api/")
+            .query({
                 "expression": "(sqrt(9)+(9+3)*2)"
             })
             .then((res) => {
@@ -27,9 +31,9 @@ describe("POST / Math Expressions", () => {
                 done();
             })
     })
-    it("OK, el post para resolver expresiones simples sin especificando precision funciona", (done) => {
-        request(app).post("/api/")
-            .send({
+    it("Al mandar una expression matematica simple en un json sin especificar precision, devuelve el resultado", (done) => {
+        request(app).get("/api/")
+            .query({
                 "expression": "1+8*3",
                 "precision": "2"
             })
@@ -40,9 +44,9 @@ describe("POST / Math Expressions", () => {
                 done();
             })
     })
-    it("OK, el post para resolver expresiones compleja especificando precision funciona", (done) => {
-        request(app).post("/api/")
-            .send({
+    it("Al mandar una expression matematica compleja en un json especificando precision, devuelve el resultado", (done) => {
+        request(app).get("/api/")
+            .query({
                 "expression": "(sqrt(9)+(9+3)/2.2)",
                 "precision": "3"
             })
